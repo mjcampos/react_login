@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PrivateRoute } from './PrivateRoute.js';
@@ -8,7 +8,7 @@ import { HomePage } from './components/HomePage';
 import { LoginPage } from './components/LoginPage';
 import { RegisterPage } from './components/RegisterPage';
 
-export class App extends React.Component {
+class App extends Component {
     constructor(props) {
         super(props);
 
@@ -35,3 +35,5 @@ function mapStateToProps(state) {
         alert
     };
 }
+
+export default connect(mapStateToProps, null)(App);

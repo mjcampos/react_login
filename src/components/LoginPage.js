@@ -30,9 +30,11 @@ export class LoginPage extends Component {
 
     render() {
         const { username, password, submitted } = this.state;
+        
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Login</h2>
+
                 <form name="form">
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
