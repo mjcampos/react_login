@@ -32,11 +32,14 @@ class LoginPage extends Component {
 
         // Need to validate
         if (username && password) {
-            this.setState({error: false});
+            this.setState({
+                error: false,
+                errorMessage: ''
+            });
 
             // By this time the user inputs have been validated
             // Now we need to see if it's saved in our database
-            
+            this.props.login(username, password);
         } else {
             this.setState({
                 error: true,
@@ -73,6 +76,7 @@ class LoginPage extends Component {
 
                     <div className="form-group">
                         <button className="btn btn-primary" >Login</button>
+                        <Link to="/register" className="btn btn-danger" >Register</Link>
                     </div>
                 </form>
             </div>
@@ -86,4 +90,4 @@ function mapStateToProps(state) {
 
 // export { LoginPage as TestLoginPage };
 
-export default connect(mapStateToProps, null)(LoginPage);
+export default connect(mapStateToProps, userActions)(LoginPage);

@@ -6,7 +6,7 @@ import { history } from './helpers';
 import { alertActions } from './actions';
 import { HomePage } from './components/HomePage';
 import LoginPage from './components/LoginPage';
-import { RegisterPage } from './components/RegisterPage';
+import RegisterPage from './components/RegisterPage';
 
 class App extends Component {
     constructor(props) {
@@ -19,10 +19,12 @@ class App extends Component {
 
     render() {
         const { alert } = this.props;
+
         return (
               <div className="container">
                   <div className="col-sm-8 col-sm-offset-2">
-                              <LoginPage />
+                               <Route path="/" exact component={LoginPage}/>
+                               <Route path="/register" exact component={RegisterPage}/>
                   </div>
               </div>
         );
