@@ -43,7 +43,7 @@ class LoginPage extends Component {
         } else {
             this.setState({
                 error: true,
-                errorMessage: 'Invalide Username or Password'
+                errorMessage: 'Invalid Username or Password'
             });
         }
     }
