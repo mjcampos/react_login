@@ -23,7 +23,7 @@ class App extends Component {
         return (
               <div className="container">
                   <div className="col-sm-8 col-sm-offset-2">
-                               <Route path="/" exact component={LoginPage}/>
+                               <Route path="/login" exact component={LoginPage}/>
                                <Route path="/register" exact component={RegisterPage}/>
                   </div>
               </div>

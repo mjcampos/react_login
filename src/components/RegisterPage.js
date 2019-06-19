@@ -87,7 +87,7 @@ class RegisterPage extends Component {
 
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
-                        <Link to="/" className="btn btn-link">Cancel</Link>
+                        <Link to="/login" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
             </div>
