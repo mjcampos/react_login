@@ -32,8 +32,11 @@ class LoginPage extends Component {
 
         // Need to validate
         if (username && password) {
-            console.log("Logging in");
             this.setState({error: false});
+
+            // By this time the user inputs have been validated
+            // Now we need to see if it's saved in our database
+            
         } else {
             this.setState({
                 error: true,
