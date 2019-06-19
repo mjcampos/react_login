@@ -36,13 +36,13 @@ class RegisterPage extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        var {username, password} = this.state.user;
+        var {user} = this.state;
 
         // Set the submitted state to true
         this.setState({submitted: true});
 
         // Need to validate
-        if (username && password) {
+        if (user.username && user.password) {
             this.setState({
                 error: false,
                 errorMessage: ''
@@ -50,7 +50,7 @@ class RegisterPage extends Component {
 
             // By this time the user inputs have been validated
             // Now we need to see if it's saved in our database
-            this.props.login(username, password);
+             this.props.register(user);
         } else {
             this.setState({
                 error: true,
@@ -66,7 +66,7 @@ class RegisterPage extends Component {
             <div className="col-md-6 col-md-offset-3">
                 <h2>Register</h2>
 
-                {error && <ErrorModal errorMessage={errorMessage}/>}
+                {(error || this.props.error) && <ErrorModal errorMessage={error ? errorMessage : this.props.error}/>}
 
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
@@ -97,9 +97,9 @@ class RegisterPage extends Component {
 
 // complete the below function
 function mapStateToProps(state) {
-    return state;
+    return state.registration;
 }
 
 // export { RegisterPage as TestRegisterPage };
 
-export default connect(mapStateToProps, null)(RegisterPage);
+export default connect(mapStateToProps, userActions)(RegisterPage);
