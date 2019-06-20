@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export class HomePage extends Component {
-
+class HomePage extends Component {
     render() {
         return (
             <div className="col-md-6 col-md-offset-3">
@@ -14,3 +14,9 @@ export class HomePage extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return state;
+}
+
+export default connect(mapStateToProps, null)(HomePage);

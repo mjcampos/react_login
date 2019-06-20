@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
 import { alertActions } from './actions';
-import { HomePage } from './components/HomePage';
+import HomePage from './components/HomePage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 
@@ -18,11 +18,13 @@ class App extends Component {
     }
 
     render() {
-        const { alert } = this.props;
+        var loggedIn = this.props.authentication.loggedIn;
 
         return (
               <div className="container">
                   <div className="col-sm-8 col-sm-offset-2">
+                               <Route path="/" exact render={() => (
+                                 loggedIn ? (<HomePage/>) : (<Redirect to="/login"/>))}/>
                                <Route path="/login" exact component={LoginPage}/>
                                <Route path="/register" exact component={RegisterPage}/>
                   </div>
@@ -32,10 +34,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-    const { alert } = state;
-    return {
-        alert
-    };
+    return state;
 }
 
 export default connect(mapStateToProps, null)(App);
