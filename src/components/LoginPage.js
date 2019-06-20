@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ErrorModal from './ErrorModal';
+import AlertModal from './AlertModal';
 
 import { userActions } from '../actions';
 
@@ -15,8 +15,6 @@ class LoginPage extends Component {
             username: '',
             password: '',
             submitted: false,
-            error: false,
-            errorMessage: ''
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,30 +30,20 @@ class LoginPage extends Component {
 
         // Need to validate
         if (username && password) {
-            this.setState({
-                error: false,
-                errorMessage: ''
-            });
-
-            // By this time the user inputs have been validated
-            // Now we need to see if it's saved in our database
+            // Saved to our database
             this.props.login(username, password);
-        } else {
-            this.setState({
-                error: true,
-                errorMessage: 'Invalid Username or Password'
-            });
         }
     }
 
     render() {
-        const { username, password, submitted, error, errorMessage } = this.state;
+        const { username, password, submitted } = this.state;
+        var {alert} = this.props;
 
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Login</h2>
 
-                {error && <ErrorModal errorMessage={errorMessage}/>}
+                {alert && <AlertModal alertMessage={alert.message}/>}
 
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
@@ -88,6 +76,6 @@ function mapStateToProps(state) {
     return state;
 }
 
-// export { LoginPage as TestLoginPage };
+export { LoginPage as TestLoginPage };
 
 export default connect(mapStateToProps, userActions)(LoginPage);

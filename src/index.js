@@ -9,7 +9,7 @@ import App from './App';
 import { configureFakeAPI } from './helpers';
 
 // console.log(store.getState());
-// store.subscribe(() => console.log('store', store.getState()));
+store.subscribe(() => console.log('store', store.getState()));
 
 configureFakeAPI();
 

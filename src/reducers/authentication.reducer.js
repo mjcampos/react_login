@@ -11,6 +11,11 @@ export function authentication(state = initialState, action) {
         user: action.user
       };
     case userConstants.LOGIN_SUCCESS:
+      localStorage.setItem('user', JSON.stringify({
+        username: action.user.username,
+        password: action.user.password
+      }));
+      
       return {
         loggedIn: true,
         user: action.user
@@ -18,6 +23,7 @@ export function authentication(state = initialState, action) {
     case userConstants.LOGIN_FAILURE:
       return {};
     case userConstants.LOGOUT:
+      localStorage.removeItem('user');
       return {};
     default:
       return state

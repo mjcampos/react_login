@@ -2,7 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import ErrorModal from './ErrorModal';
+import AlertModal from './AlertModal';
 
 import { userActions } from '../actions';
 
@@ -15,9 +15,7 @@ class RegisterPage extends Component {
                 username: '',
                 password: ''
             },
-            submitted: false,
-            error: false,
-            errorMessage: ''
+            submitted: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -43,30 +41,22 @@ class RegisterPage extends Component {
 
         // Need to validate
         if (user.username && user.password) {
-            this.setState({
-                error: false,
-                errorMessage: ''
-            });
-
-            // By this time the user inputs have been validated
-            // Now we need to see if it's saved in our database
-             this.props.register(user);
-        } else {
-            this.setState({
-                error: true,
-                errorMessage: 'Invalid Username or Password'
-            });
+            // Save to our local database
+            this.props.register(user);
         }
     }
 
     render() {
-        const { user, submitted, error, errorMessage } = this.state;
+        const { user, submitted } = this.state;
+        var {alert} = this.props;
+
+        console.log("this.props", this.props.alert);
 
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Register</h2>
 
-                {(error || this.props.error) && <ErrorModal errorMessage={error ? errorMessage : this.props.error}/>}
+                {alert && <AlertModal alertMessage={alert.message}/>}
 
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
@@ -97,9 +87,9 @@ class RegisterPage extends Component {
 
 // complete the below function
 function mapStateToProps(state) {
-    return state.registration;
+    return state;
 }
 
-// export { RegisterPage as TestRegisterPage };
+export { RegisterPage as TestRegisterPage };
 
 export default connect(mapStateToProps, userActions)(RegisterPage);
