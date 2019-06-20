@@ -23,7 +23,13 @@ var login = (username, password) => dispatch => {
     // function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
 }
 
-var logout = () => dispatch => dispatch({type: userConstants.LOGOUT});
+function logout() {
+    userService.logout();
+
+    return {
+        type: userConstants.LOGOUT
+    }
+}
 
 var register = user => dispatch => {
     // return the promise using fetch which dispatches appropriately 

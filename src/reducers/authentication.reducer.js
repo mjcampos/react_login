@@ -23,7 +23,7 @@ export function authentication(state = initialState, action) {
     case userConstants.LOGIN_FAILURE:
       return {};
     case userConstants.LOGOUT:
-      localStorage.removeItem('user');
+      
       return {};
     default:
       return state
