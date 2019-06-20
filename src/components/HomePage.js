@@ -4,16 +4,12 @@ import { connect } from 'react-redux';
 import {userActions} from '../actions';
 
 class HomePage extends Component {
-    logout() {
-        this.props.logout();
-    }
-
     render() {
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2 align="center">Welcome! You have successfully logged in.</h2>
 
-                <button align="center" onClick={() => this.logout()}>Logout</button>
+                <Link align="center" to='/login' onClick={() => this.props.logout()}>Logout</Link>
             </div>
         );
     }
