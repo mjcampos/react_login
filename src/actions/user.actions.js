@@ -7,14 +7,10 @@ var login = (username, password) => dispatch => {
     // return the promise using fetch which adds to localstorage on resolve
 
     userService.login(username, password)
-        .then(() => {
-            dispatch({
-                    type: userConstants.LOGIN_SUCCESS,
-                    user: {
-                        username,
-                        password
-                    }
-                })})
+        .then((user) => dispatch({
+                            type: userConstants.LOGIN_SUCCESS,
+                            user
+                        }))
         .catch(error => dispatch({
             type: userConstants.LOGIN_FAILURE,
             error
