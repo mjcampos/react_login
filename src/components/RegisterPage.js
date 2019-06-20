@@ -50,8 +50,6 @@ class RegisterPage extends Component {
         const { user, submitted } = this.state;
         var {alert} = this.props;
 
-        console.log("this.props", this.props.alert);
-
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Register</h2>
